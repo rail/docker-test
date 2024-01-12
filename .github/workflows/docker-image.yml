@@ -41,7 +41,7 @@ jobs:
         labels: ${{ steps.meta.outputs.labels }}
         cache-from: type=gha
         cache-to: type=gha,mode=max
-        outputs: type=tar,dest=/tmp/${{ matrix.platform }}.tar
+        outputs: type=docker,dest=/tmp/${{ matrix.platform }}.tar
     - name: Upload tarball
       uses: actions/upload-artifact@v4
       with:
