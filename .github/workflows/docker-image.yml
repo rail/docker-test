@@ -42,5 +42,10 @@ jobs:
         cache-from: type=gha
         cache-to: type=gha,mode=max
         outputs: type=tar,dest=/tmp/${{ matrix.platform }}.tar
-    - name: Build the Docker image
-      run: docker build . --file Dockerfile --tag my-image-name:$(date +%s)
+    - name: Upload tarball
+      uses: actions/upload-artifact@v4
+      with:
+        name: ${{ matrix.platform }}.tar
+        path: /tmp/${{ matrix.platform }}.tar
+        if-no-files-found: error
+        retention-days: 1
