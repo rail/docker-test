@@ -28,6 +28,8 @@ jobs:
       uses: docker/metadata-action@v4
       with:
         images: us-east1-docker.pkg.dev/crl-ci-images/cockroach/tpc-e
+        flavor:
+          prefix: "${{ matrix.platform }}-"
         labels: |
           org.opencontainers.image.title=TPC-E
           org.opencontainers.image.vendor=Cockroach Labs Inc.
@@ -36,7 +38,7 @@ jobs:
       with:
         platforms: "linux/${{ matrix.platform }}"
         context: .
-        tags: "$(for t in ${{ steps.meta.outputs.tags }}; do echo -n ${{ matrix.platform }}-$t; done)"
+        tags: ${{ steps.meta.outputs.tags }}
         labels: ${{ steps.meta.outputs.labels }}
         cache-from: type=gha
         cache-to: type=gha,mode=max
