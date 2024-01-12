@@ -31,5 +31,15 @@ jobs:
         labels: |
           org.opencontainers.image.title=TPC-E
           org.opencontainers.image.vendor=Cockroach Labs Inc.
+    - name: Build
+      uses: docker/build-push-action@v5
+      with:
+        platforms: "linux/${{ matrix.platform }}"
+        context: .
+        tags: "$(for t in ${{ steps.meta.outputs.tags }}; do echo -n ${{ matrix.platform }}-$t; done)"
+        labels: ${{ steps.meta.outputs.labels }}
+        cache-from: type=gha
+        cache-to: type=gha,mode=max
+        outputs: type=tar,dest=/tmp/${{ matrix.platform }}.tar
     - name: Build the Docker image
       run: docker build . --file Dockerfile --tag my-image-name:$(date +%s)
