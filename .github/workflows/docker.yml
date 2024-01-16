@@ -22,7 +22,7 @@ jobs:
       id: meta
       uses: docker/metadata-action@v4
       with:
-        images: "$GAR_REPO"
+        images: ${{ env.GAR_REPO }}
         labels: |
           org.opencontainers.image.title=TPC-E
           org.opencontainers.image.vendor=Cockroach Labs Inc.
@@ -31,7 +31,7 @@ jobs:
       with:
         platforms: "linux/amd64"
         context: .
-        tags: "$GAR_REPO:amd64-${{ github.sha }}"
+        tags: "${{ env.GAR_REPO }}:amd64-${{ github.sha }}"
         labels: ${{ steps.meta.outputs.labels }}
         cache-from: type=gha
         cache-to: type=gha,mode=max
@@ -41,7 +41,7 @@ jobs:
       with:
         platforms: "linux/arm64"
         context: .
-        tags: "$GAR_REPO:arm64-${{ github.sha }}"
+        tags: "${{ env.GAR_REPO }}:arm64-${{ github.sha }}"
         labels: ${{ steps.meta.outputs.labels }}
         cache-from: type=gha
         cache-to: type=gha,mode=max
