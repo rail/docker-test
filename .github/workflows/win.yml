@@ -1,0 +1,15 @@
+name: windows
+
+on:
+  push:
+    branches: [ "main" ]
+  pull_request:
+    branches: [ "main" ]
+
+jobs:
+  windows:
+    runs-on: windows-latest
+    steps:
+    - run: bash -c "uname -s"
+    - run: bash -c "uname -om"
+    - run: bash -c "uname -a"
