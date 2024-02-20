@@ -14,3 +14,18 @@ jobs:
     - run: bash -c "uname -om"
     - run: bash -c "uname -a"
     - run: bash -c "uname -o"
+  mac-amd64:
+    runs-on: macos-latest
+    steps:
+    - run: bash -c "uname -s"
+    - run: bash -c "uname -m"
+    - run: bash -c "uname -a"
+    - run: bash -c "uname -v"
+    - run: bash -c "uname -sm"
+
+  darwin-arm64:
+    runs-on: macos-latest-xlarge
+    steps:
+      - run: bash -c "uname -sm"
+
+    
