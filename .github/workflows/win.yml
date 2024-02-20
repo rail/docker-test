@@ -10,7 +10,7 @@ jobs:
   windows:
     runs-on: windows-latest
     steps:
-    - run: bash -c "if [[ $(uname -s) == "MINGW64_NT"* ]]; then echo cool; fi"
+    - run: bash -c 'if [[ $(uname -s) == "MINGW64_NT"* ]]; then echo cool; fi'
     - run: bash -c "uname -om"
     - run: bash -c "uname -a"
     - run: bash -c "uname -o"
